@@ -12,8 +12,8 @@ namespace models {
             sf::Sprite imgSprite;
 
             int 
-                iXpos = 0,
-                iYpos = 0
+                iXpos = 100,
+                iYpos = 100
             ;
 
         // Constructors

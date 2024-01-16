@@ -9,6 +9,7 @@ GameObject::GameObject(sf::Texture CTexture){
 
 // Methods
 void GameObject::renderTo(sf::RenderWindow* CWindow){
+    this->imgSprite.setPosition(this->iXpos, this->iYpos);
     CWindow->draw(this->imgSprite);
 };
 

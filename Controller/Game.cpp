@@ -11,7 +11,7 @@ Game::Game()
    this->CWindow = new sf::RenderWindow(sf::VideoMode(600, 300), "Josiah Kurt B. Aviso");
    
    sf::Texture CTexture;
-   if(!CTexture.loadFromFile("persona.png")){
+   if(!CTexture.loadFromFile("./View/Image/persona.png")){
       std::cout << "Error" << std::endl;
    }
    else {
