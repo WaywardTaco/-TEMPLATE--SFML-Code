@@ -11,13 +11,18 @@ namespace models {
             sf::Texture CTexture;
             sf::Sprite imgSprite;
 
+            int 
+                iXpos = 0,
+                iYpos = 0
+            ;
+
         // Constructors
         public:
-            GameObject();
+            GameObject(sf::Texture CTexture);
 
         // Methods
-        private:
-            void render();
+        public:
+            void renderTo(sf::RenderWindow* window);
 
         // Getters & Setters
         public:

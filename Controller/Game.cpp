@@ -1,17 +1,21 @@
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "Game.hpp"
 
 using namespace controllers;
 
-// Controllers 
+// Constructors 
 Game::Game()
 {
    this->CWindow = new sf::RenderWindow(sf::VideoMode(600, 300), "Josiah Kurt B. Aviso");
-
+   
    sf::Texture CTexture;
-   if(!CTexture.loadFromFile("View/Image/persona.png")){
-
+   if(!CTexture.loadFromFile("persona.png")){
+      std::cout << "Error" << std::endl;
+   }
+   else {
+      this->CEntity = new GameObject(CTexture);
    }
 };
 
@@ -49,6 +53,6 @@ void Game::update(){
 
 void Game::render(){
    this->CWindow->clear();
-   // this->CWindow->draw(this->CEntity);
+   this->CEntity->renderTo(this->CWindow);
    this->CWindow->display();
 };
