@@ -5,38 +5,50 @@
 using namespace controllers;
 
 // Controllers 
-Game::Game(){
+Game::Game()
+{
+   this->CWindow = new sf::RenderWindow(sf::VideoMode(600, 300), "Josiah Kurt B. Aviso");
 
+   sf::Texture CTexture;
+   if(!CTexture.loadFromFile("View/Image/persona.png")){
+
+   }
 };
 
 // Methods
 void Game::run(){
-   sf::RenderWindow window(sf::VideoMode(200, 200), "SFML Start-Up");
-   sf::CircleShape shape(100.f);
-   shape.setFillColor(sf::Color::Blue);
+   while(this->CWindow->isOpen()){
+      this->processEvents();
 
-   while (window.isOpen()) {
-      sf::Event event;
-      while (window.pollEvent(event)) {
-         if (event.type == sf::Event::Closed)
-            window.close();
-      }
+      this->update();
 
-      window.clear();
-      window.draw(shape);
-      window.display();
+      this->render();
    }
-
 };
 
 void Game::processEvents(){
-
+   sf::Event CEvent;
+   while (this->CWindow->pollEvent(CEvent)) {
+      switch(CEvent.type){
+         case sf::Event::Closed:
+            this->bCloseWindow = true;
+            
+            break;
+         default:
+            break;
+      }
+   }
 };
 
 void Game::update(){
-
+   if(bCloseWindow){
+      bCloseWindow = false;
+      CWindow->close();
+   }
 };
 
 void Game::render(){
-
+   this->CWindow->clear();
+   // this->CWindow->draw(this->CEntity);
+   this->CWindow->display();
 };

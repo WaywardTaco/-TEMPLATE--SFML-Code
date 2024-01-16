@@ -1,9 +1,9 @@
 
-#include "Controller/Game.cpp"
+#include "Inclusions.hpp"
 
 int main(){
 
-   controllers::Game CGame;
+   controllers::Game CGame = controllers::Game();
 
    CGame.run();
 
