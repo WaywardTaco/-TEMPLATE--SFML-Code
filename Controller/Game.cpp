@@ -8,7 +8,7 @@ using namespace controllers;
 // Constructors 
 Game::Game()
 {
-   this->CWindow = new sf::RenderWindow(sf::VideoMode(600, 300), "Josiah Kurt B. Aviso");
+   this->CWindow = new sf::RenderWindow(sf::VideoMode(1800, 900), "Josiah Kurt B. Aviso");
    
    sf::Texture CTexture;
    if(!CTexture.loadFromFile("./View/Image/persona.png")){
@@ -34,10 +34,45 @@ void Game::processEvents(){
    sf::Event CEvent;
    while (this->CWindow->pollEvent(CEvent)) {
       switch(CEvent.type){
-         case sf::Event::Closed:
+         case sf::Event::Closed :
             this->bCloseWindow = true;
             
             break;
+
+         case sf::Event::KeyPressed :
+            switch (CEvent.key.code) {
+               case sf::Keyboard::W :
+                  CEntity->setUpFlag(true);
+                  break;
+               case sf::Keyboard::A :
+                  CEntity->setLeftFlag(true);
+                  break;
+               case sf::Keyboard::S :
+                  CEntity->setDownFlag(true);
+                  break;
+               case sf::Keyboard::D :
+                  CEntity->setRightFlag(true);
+                  break;
+            }
+            break;
+
+         case sf::Event::KeyReleased :
+            switch (CEvent.key.code) {
+               case sf::Keyboard::W :
+                  CEntity->setUpFlag(false);
+                  break;
+               case sf::Keyboard::A :
+                  CEntity->setLeftFlag(false);
+                  break;
+               case sf::Keyboard::S :
+                  CEntity->setDownFlag(false);
+                  break;
+               case sf::Keyboard::D :
+                  CEntity->setRightFlag(false);
+                  break;
+            }
+            break;
+
          default:
             break;
       }
@@ -49,6 +84,8 @@ void Game::update(){
       bCloseWindow = false;
       CWindow->close();
    }
+
+   CEntity->updatePosition();
 };
 
 void Game::render(){

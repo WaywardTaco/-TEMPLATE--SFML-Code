@@ -11,10 +11,20 @@ namespace models {
             sf::Texture CTexture;
             sf::Sprite imgSprite;
 
-            int 
-                iXpos = 100,
-                iYpos = 100
+            bool
+                bUpFlag = false,
+                bDownFlag = false,
+                bLeftFlag = false,
+                bRightFlag = false
             ;
+
+            float 
+                fXpos = 100,
+                fYpos = 100,
+                fSpeed = 1.8
+            ;
+
+
 
         // Constructors
         public:
@@ -23,11 +33,18 @@ namespace models {
         // Methods
         public:
             void renderTo(sf::RenderWindow* window);
+            void updatePosition();
 
         // Getters & Setters
         public:
             void setTexture(sf::Texture CTexture_param);
+            void setUpFlag(bool bValue);
+            void setDownFlag(bool bValue);
+            void setLeftFlag(bool bValue);
+            void setRightFlag(bool bValue);
+            
             sf::Sprite* getSprite();
+
     };
 }
 
