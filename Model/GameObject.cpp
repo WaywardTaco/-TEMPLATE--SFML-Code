@@ -5,13 +5,12 @@
 using namespace models;
 
 // Constructors
-GameObject::GameObject(sf::Texture CTexture){
-    this->setTexture(CTexture);
+GameObject::GameObject(){
+    
 };
 
 // Methods
 void GameObject::renderTo(sf::RenderWindow* CWindow){
-    this->imgSprite.setPosition(this->fXpos, this->fYpos);
     CWindow->draw(this->imgSprite);
 };
 
@@ -31,6 +30,8 @@ void GameObject::updatePosition(){
         this->fXpos += fXchange * this->fSpeed;
         this->fYpos -= fYchange * this->fSpeed;
     }
+
+    this->imgSprite.setPosition(this->fXpos, this->fYpos);
 };
 
 // Getters & Setters

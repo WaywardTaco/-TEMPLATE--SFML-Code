@@ -28,7 +28,7 @@ namespace models {
 
         // Constructors
         public:
-            GameObject(sf::Texture CTexture);
+            GameObject();
 
         // Methods
         public:

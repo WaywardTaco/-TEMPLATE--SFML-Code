@@ -3,7 +3,7 @@
 
 int main(){
 
-   controllers::Game CGame = controllers::Game();
+   Game CGame;
 
    CGame.run();
 

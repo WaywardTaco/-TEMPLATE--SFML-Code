@@ -6,4 +6,3 @@ g++ -std=gnu++11 -Wall Main.o -o Main -LLibrary/SFML-2.5.1/lib -lsfml-graphics-s
 
 IF EXIST Main.exe cls
 IF EXIST Main.exe CALL Main.exe
-

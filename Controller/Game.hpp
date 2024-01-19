@@ -9,8 +9,8 @@ namespace controllers {
     class Game {
         // Fields
         private:
-            sf::RenderWindow* CWindow;
-            GameObject* CEntity;
+            sf::RenderWindow CWindow;
+            GameObject CEntity;
             bool 
                 bCloseWindow = false
             ;
@@ -27,6 +27,7 @@ namespace controllers {
             void processEvents();
             void update();
             void render();
+            void processKeyboardInput(sf::Keyboard::Key CKey, bool isPressed);
     };
 }
 
