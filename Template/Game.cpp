@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Game.hpp"
-#include "SingletonTemplate.hpp"
 
 using namespace controllers;
 
@@ -18,8 +17,6 @@ Game::Game() :
    }
 
    this->CEntity.setTexture(CTexture);   
-
-   SingletonTemplate::getInstance()->test();
 };
 
 // Methods
