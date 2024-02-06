@@ -3,6 +3,9 @@
 
 using namespace templates;
 
+/* * * * * * * * * * * * *
+ *   SINGLETON CONTENT   *
+ * * * * * * * * * * * * */
 SingletonTemplate* SingletonTemplate::P_SHARED_INSTANCE = NULL;
             
 SingletonTemplate::SingletonTemplate(){};

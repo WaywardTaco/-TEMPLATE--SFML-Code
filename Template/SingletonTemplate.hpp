@@ -4,6 +4,10 @@
 
 namespace templates{
     class SingletonTemplate {
+
+        /* * * * * * * * * * * * *
+        *   SINGLETON CONTENT   *
+        * * * * * * * * * * * * */
         private :
             static SingletonTemplate* P_SHARED_INSTANCE;
 

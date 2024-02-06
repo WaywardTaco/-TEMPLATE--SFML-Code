@@ -1,59 +1,31 @@
+#pragma once
 
-#ifndef GAME_OBJECT_H
-#define GAME_OBJECT_H
-
-#include <SFML/Graphics.hpp>
+/* * * * * [TODO][1] * * * * *
+ Add content based on the Game
+ Object class diagram shown in
+ the lecture slides.
+ * * * * * * * * * * * * * * */
 
 namespace models {
     class GameObject {
-        // Field
-        private:
-            sf::Texture CTexture;
-            sf::Sprite imgSprite;
+        protected:
+            bool bEnabled;
+            std::string strName;
+            sf::Sprite* pSprite;
+            sf::Texture* pTexture;
+            float fSpeed;
+            float   
+                fXpos,
+                fYpos;
 
-            float 
-                fXpos, 
-                fYpos, 
-                fSpeed
-            ;
-            
-            bool
-                bMovingUp,
-                bMovingDown,
-                bMovingLeft,
-                bMovingRight
-            ;
-
-        // Constructors
         public:
-            GameObject();
+            GameObject(std::string strName, float fSpeed);
 
-        // Methods
         public:
-            void renderTo(sf::RenderWindow* window);
-            void updatePosition(float fElapsedTime);
-
-        // Getters & Setters
-        public:
-            void setTexture(sf::Texture CTexture_param);
-            
+            bool getEnabled();
+            std::string getName();
             sf::Sprite* getSprite();
-
+            void setTexture(sf::Texture* pTexture);
             float getSpeed();
-
-            bool getMovingUp();
-            void setMovingUp(bool bMovingUp);
-
-            bool getMovingDown();
-            void setMovingDown(bool bMovingDown);
-
-            bool getMovingLeft();
-            void setMovingLeft(bool bMovingLeft);
-
-            bool getMovingRight();
-            void setMovingRight(bool bMovingRight);     
-
     };
 }
-
-#endif

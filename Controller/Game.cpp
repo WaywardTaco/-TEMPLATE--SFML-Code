@@ -1,25 +1,21 @@
 
-#include <SFML/Graphics.hpp>
-#include <iostream>
 #include "Game.hpp"
-#include "SingletonTemplate.hpp"
 
 using namespace controllers;
 
 // Constructors 
 Game::Game() : 
    CWindow(sf::VideoMode(1800, 900), "Josiah Kurt B. Aviso"),
-   bCloseWindow(false)
+   bCloseWindow(false),
+   CEntity("Player")
 {
-   
-   sf::Texture CTexture;
-   if(!CTexture.loadFromFile("View/Image/persona.png")){
-      std::cout << "Error loading texture" << std::endl;
-   }
 
-   this->CEntity.setTexture(CTexture);   
+   TextureManager::getInstance()->loadAll();
 
-   SingletonTemplate::getInstance()->test();
+   std::vector<sf::Texture*> mapPlayerTexture = TextureManager::getInstance()->getTexture(AssetType::PLAYER);
+
+   this->CEntity.setTexture(mapPlayerTexture[0]);   
+
 };
 
 // Methods
