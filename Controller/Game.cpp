@@ -6,15 +6,17 @@ using namespace controllers;
 // Constructors 
 Game::Game() : 
    CWindow(sf::VideoMode(1800, 900), "Josiah Kurt B. Aviso"),
-   bCloseWindow(false),
-   CEntity("Player")
+   bCloseWindow(false)
 {
-
    TextureManager::getInstance()->loadAll();
+
+   Player* pEntity = new Player("Player");
+   GameObjectManager::getInstance()->addObject(pEntity);
 
    std::vector<sf::Texture*> mapPlayerTexture = TextureManager::getInstance()->getTexture(AssetType::PLAYER);
 
-   this->CEntity.setTexture(mapPlayerTexture[0]);   
+   GameObjectManager::getInstance()->findObjectByName("Player")->setTexture(mapPlayerTexture[0]);   
+
 
 };
 
@@ -49,16 +51,8 @@ void Game::processEvents(){
          case sf::Event::Closed :
             this->bCloseWindow = true;
             break;
-
-         case sf::Event::KeyPressed :
-            processKeyboardInput(CEvent.key.code, true);
-            break;
-
-         case sf::Event::KeyReleased :
-            processKeyboardInput(CEvent.key.code, false);
-            break;
-
-         default:
+         default :
+            GameObjectManager::getInstance()->processEvents(CEvent);
             break;
       }
    }
@@ -70,33 +64,11 @@ void Game::update(sf::Time tDeltaTime){
       CWindow.close();
    }
 
-   this->CEntity.updatePosition(tDeltaTime.asSeconds());
+   GameObjectManager::getInstance()->update(tDeltaTime);
 };
 
 void Game::render(){
    this->CWindow.clear();
-   this->CWindow.draw(*(CEntity.getSprite()));
+   GameObjectManager::getInstance()->draw(&this->CWindow);
    this->CWindow.display();
 };
-
-void Game::processKeyboardInput(sf::Keyboard::Key CKey, bool isPressed){
-
-   switch (CKey) {
-      case sf::Keyboard::W :
-         this->CEntity.setMovingUp(isPressed);
-         break;
-      case sf::Keyboard::A :
-         this->CEntity.setMovingLeft(isPressed);
-         break;
-      case sf::Keyboard::S :
-         this->CEntity.setMovingDown(isPressed);
-         break;
-      case sf::Keyboard::D :
-         this->CEntity.setMovingRight(isPressed);
-         break;
-      default :
-         break;
-   }
-
-
-}

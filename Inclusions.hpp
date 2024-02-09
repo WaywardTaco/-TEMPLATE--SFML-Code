@@ -7,5 +7,6 @@
 #include "Model/GameObject.cpp"
 #include "Model/Entity/Player.cpp"
 #include "Controller/Manager/TextureManager.cpp"
+#include "Controller/Manager/GameObjectManager.cpp"
 #include "Controller/Game.cpp"
 

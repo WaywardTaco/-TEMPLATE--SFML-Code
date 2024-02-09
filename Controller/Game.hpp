@@ -6,6 +6,7 @@
 #include "../Model/Entity/Player.hpp"
 #include "../Model/Enum/AssetType.hpp"
 #include "Manager/TextureManager.hpp"
+#include "Manager/GameObjectManager.hpp"
 
 namespace controllers {
     using namespace entities;
@@ -14,7 +15,6 @@ namespace controllers {
         // Fields
         private:
             sf::RenderWindow CWindow;
-            Player CEntity;
             bool bCloseWindow;
 
         // Controllers
@@ -29,7 +29,6 @@ namespace controllers {
             void processEvents();
             void update(sf::Time tDeltaTime);
             void render();
-            void processKeyboardInput(sf::Keyboard::Key CKey, bool isPressed);
     };
 }
 

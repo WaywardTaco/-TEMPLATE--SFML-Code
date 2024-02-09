@@ -1,6 +1,4 @@
-
-#ifndef PLAYER_H
-#define PLAYER_H
+#pragma once
 
 #include "../GameObject.hpp"
 
@@ -9,32 +7,26 @@ namespace entities {
 
     class Player : public GameObject {
         private:
-            bool
-                bMovingUp,
-                bMovingDown,
-                bMovingLeft,
-                bMovingRight
-            ;
+            bool bMovingLeft;
+            bool bMovingRight;
+            bool bMovingUp;
+            bool bMovingDown;
 
         public:
             Player(std::string strName);
 
+        /* [TODO][1] */
         public:
-            void updatePosition(float fElapsedTime);
+            void initialize();
+            void update(sf::Time tDeltaTime);
+
+        protected:
+            void processKeyboardInput(sf::Keyboard::Key CKey, bool isPressed);
 
         public:
-            bool getMovingUp();
-            void setMovingUp(bool bMovingUp);
-
-            bool getMovingDown();
-            void setMovingDown(bool bMovingDown);
-
             bool getMovingLeft();
             void setMovingLeft(bool bMovingLeft);
-
             bool getMovingRight();
-            void setMovingRight(bool bMovingRight); 
-    };      
+            void setMovingRight(bool bMovingRight);
+    };
 }
-
-#endif
