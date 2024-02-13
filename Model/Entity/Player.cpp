@@ -7,16 +7,32 @@ Player::Player(std::string strName) : GameObject(strName, 300.0f) {
     this->bMovingRight = false;
 }
 
+Player::Player(std::string strName, AnimatedTexture* pAnimatedTexture) : GameObject(strName, 300.0f, pAnimatedTexture) {
+    this->bMovingLeft = false;
+    this->bMovingRight = false;
+}
+
 /* [TODO][2] */
 void Player::initialize(){
     this->pSprite->setPosition(100.f, 100.f);
 };
 
 void Player::update(sf::Time tDeltaTime){
-    if(bMovingLeft)
+    if(bMovingLeft){
         this->pSprite->move(-1.f * this->fSpeed * tDeltaTime.asSeconds(), 0.f);
-    if(bMovingRight)
+
+        this->pAnimatedTexture->setCurrentFrame(0);
+        this->getSprite()->setTexture(*this->pAnimatedTexture->getFrame());
+    }
+
+    if(bMovingRight){
         this->pSprite->move(1.f * this->fSpeed * tDeltaTime.asSeconds(), 0.f);
+
+        this->pAnimatedTexture->setCurrentFrame(1);
+        this->getSprite()->setTexture(*this->pAnimatedTexture->getFrame());
+    }
+
+    
 };
 
 void Player::processKeyboardInput(sf::Keyboard::Key CKey, bool isPressed){

@@ -3,6 +3,7 @@
 #define GAME_HPP
 
 #include <SFML/Graphics.hpp>
+#include "../Model/AnimatedTexture.hpp"
 #include "../Model/Entity/Player.hpp"
 #include "../Model/Enum/AssetType.hpp"
 #include "Manager/TextureManager.hpp"

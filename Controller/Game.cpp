@@ -9,13 +9,12 @@ Game::Game() :
    bCloseWindow(false)
 {
    TextureManager::getInstance()->loadAll();
+   AnimatedTexture* playerTextures = new AnimatedTexture(AssetType::PLAYER, TextureManager::getInstance()->getTexture(AssetType::PLAYER));
 
-   Player* pEntity = new Player("Player");
+   Player* pEntity = new Player("Player", playerTextures);
    GameObjectManager::getInstance()->addObject(pEntity);
 
-   std::vector<sf::Texture*> mapPlayerTexture = TextureManager::getInstance()->getTexture(AssetType::PLAYER);
 
-   GameObjectManager::getInstance()->findObjectByName("Player")->setTexture(mapPlayerTexture[0]);   
 
 
 };

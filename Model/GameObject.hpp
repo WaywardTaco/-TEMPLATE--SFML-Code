@@ -1,16 +1,20 @@
 #pragma once
 
+#include "AnimatedTexture.hpp"
+
 namespace models {
     class GameObject {
         protected:
             bool bEnabled;
             std::string strName;
             sf::Sprite* pSprite;
+            AnimatedTexture* pAnimatedTexture;
             sf::Texture* pTexture;
             float fSpeed;
 
         public:
             GameObject(std::string strName, float fSpeed);
+            GameObject(std::string strName, float fSpeed, AnimatedTexture* pAnimatedTexture);
         
         /* [TODO][1] */
         public:
@@ -26,6 +30,7 @@ namespace models {
             bool getEnabled();
             std::string getName();
             sf::Sprite* getSprite();
+            void setFrame(int nFrame);
             void setTexture(sf::Texture* pTexture);
             float getSpeed();
     };
