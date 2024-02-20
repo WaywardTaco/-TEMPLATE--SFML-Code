@@ -10,7 +10,8 @@ Component::Component(std::string strName, ComponentType EType){
 };
 
 Component::~Component(){
-
+    this->pOwner = NULL;
+    this->EType = ComponentType::NONE;
 };
 
 void Component::attachOwner(GameObject* pOwner){
@@ -18,7 +19,7 @@ void Component::attachOwner(GameObject* pOwner){
 };
 
 void Component::detachOwner(){
-    this->pOwner = NULL;
+    delete this;
 };
 
 GameObject* Component::getOwner(){

@@ -2,12 +2,12 @@
 
 using namespace models;
 
-GameObject::GameObject(std::string strName, float fSpeed) {
-    this->bEnabled = true;
-    this->strName = strName;
-    this->fSpeed = fSpeed;
-    this->pSprite = new sf::Sprite();
-}
+// GameObject::GameObject(std::string strName, float fSpeed) {
+//     this->bEnabled = true;
+//     this->strName = strName;
+//     this->fSpeed = fSpeed;
+//     this->pSprite = new sf::Sprite();
+// }
 
 GameObject::GameObject(std::string strName, float fSpeed, AnimatedTexture* pAnimatedTexture) {
     this->bEnabled = true;
@@ -22,20 +22,65 @@ GameObject::GameObject(std::string strName, float fSpeed, AnimatedTexture* pAnim
 
 /* [TODO][2] */
 void GameObject::processEvents(sf::Event CEvent){
-    switch(CEvent.type){
-        case sf::Event::KeyPressed :
-            this->processKeyboardInput(CEvent.key.code, true);
-            break;
+    // switch(CEvent.type){
+    //     case sf::Event::KeyPressed :
+    //         this->processKeyboardInput(CEvent.key.code, true);
+    //         break;
 
-        case sf::Event::KeyReleased :
-            this->processKeyboardInput(CEvent.key.code, false);
-            break;
-    }
+    //     case sf::Event::KeyReleased :
+    //         this->processKeyboardInput(CEvent.key.code, false);
+    //         break;
+    // }
 };
 
 void GameObject::draw(sf::RenderWindow* pWindow){
     pWindow->draw(*this->pSprite);
 };
+
+void GameObject::attachComponent(Component* pComponent){
+    this->vecComponents.push_back(pComponent);
+    pComponent->attachOwner(this);
+};
+
+void GameObject::detachComponent(Component* pComponent){
+    int nIndex = -1;
+
+    int nComponentCount = this->vecComponents.size();
+    for(int i = 0; i < nComponentCount; i++){
+        if(pComponent == this->vecComponents[i]){
+            nIndex = i;
+            break;
+        }
+    }
+
+    if(nIndex != -1){
+        this->vecComponents[nIndex]->detachOwner();
+        this->vecComponents.erase(this->vecComponents.begin() + nIndex);
+    }
+};
+
+Component* GameObject::findComponentByName(std::string strName){
+    int nComponentCount = this->vecComponents.size();
+    for(int i = 0; i < nComponentCount; i++){
+        if(this->vecComponents[i]->getName() == strName)
+            return this->vecComponents[i];
+    }
+
+    return NULL;
+};
+
+std::vector<Component*> GameObject::getComponents(ComponentType EType){
+    std::vector<Component*> vecOutput;
+
+    int nComponentCount = this->vecComponents.size();
+    for(int i = 0; i < nComponentCount; i++){
+        if(this->vecComponents[i]->getType() == EType)
+            vecOutput.push_back(this->vecComponents[i]);
+    }
+
+    return vecOutput;
+};
+
 
 bool GameObject::getEnabled() {
     return this->bEnabled;

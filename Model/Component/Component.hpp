@@ -3,7 +3,10 @@
 #define COMPONENT_H
 
 #include "../Enum/ComponentType.hpp"
-#include "../GameObject.hpp"
+
+namespace models {
+    class GameObject;
+}
 
 namespace components {
     using namespace models;
@@ -21,6 +24,8 @@ namespace components {
         public:
             void attachOwner(GameObject* pOwner);
             void detachOwner();
+
+        public:
             virtual void perform() = 0;
 
         public:

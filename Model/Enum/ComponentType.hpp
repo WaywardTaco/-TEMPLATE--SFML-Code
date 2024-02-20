@@ -3,7 +3,10 @@
 #define COMPONENT_TYPE_H
 
 enum ComponentType : int {
-    YES
+    NONE = -1,
+    SCRIPT,
+    RENDERER,
+    INPUT
 };
 
 #endif

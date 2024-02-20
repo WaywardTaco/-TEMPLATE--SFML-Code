@@ -13,10 +13,6 @@ Game::Game() :
 
    Player* pEntity = new Player("Player", playerTextures);
    GameObjectManager::getInstance()->addObject(pEntity);
-
-
-
-
 };
 
 // Methods
@@ -58,10 +54,8 @@ void Game::processEvents(){
 };
 
 void Game::update(sf::Time tDeltaTime){
-   if(bCloseWindow){
-      bCloseWindow = false;
+   if(bCloseWindow)
       CWindow.close();
-   }
 
    GameObjectManager::getInstance()->update(tDeltaTime);
 };
