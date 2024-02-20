@@ -4,7 +4,7 @@
 using namespace components;
 
 PlayerInput::PlayerInput(std::string strName) : GeneralInput(strName),
-    bMovingLeft = false, bMovingRight = false, bMovingUp = false, bMovingDown = false
+    bMovingLeft(false), bMovingRight(false), bMovingUp(false), bMovingDown(false)
 {
 
 };
@@ -21,8 +21,8 @@ void PlayerInput::perform(){
     }
 };
 
-void PlayerInput::processKeyboardInput(sf::Keyboard::Key CKey, bool isPressed){
-    switch (CKey) {
+void PlayerInput::processKeyboardInput(sf::Keyboard::Key inKey, bool isPressed){
+    switch (inKey) {
         case sf::Keyboard::W :
             this->bMovingUp = isPressed;
             break;
@@ -45,7 +45,7 @@ bool PlayerInput::getMovingLeft(){
 };
 
 bool PlayerInput::getMovingRight(){
-    return this->bMovingEight;
+    return this->bMovingRight;
 };
 
 bool PlayerInput::getMovingUp(){

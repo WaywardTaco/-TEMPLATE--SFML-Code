@@ -1,11 +1,14 @@
 #pragma once
 
 #include "AnimatedTexture.hpp"
-#include "Component/Component.hpp"
 #include "Enum/ComponentType.hpp"
+#include "Component/Component.hpp"
+#include "Component/GeneralInput.hpp"
+#include "Component/Renderer/Renderer.hpp"
 
 namespace models {
     using namespace components;
+    using namespace renderers;
     class GameObject {
         protected:
             bool bEnabled;
@@ -23,7 +26,7 @@ namespace models {
         public:
             virtual void initialize() = 0;
             virtual void processEvents(sf::Event CEvent);
-            virtual void update(sf::Time tDeltaTime) = 0;
+            virtual void update(sf::Time tDeltaTime);
             virtual void draw(sf::RenderWindow* pWindow);
 
         // protected:

@@ -18,7 +18,7 @@ namespace components {
             void perform();
 
         private:
-            void processKeyboardInput(sf::Keyboard::Key CKey, bool isPressed);
+            void processKeyboardInput(sf::Keyboard::Key inKey, bool isPressed);
 
         public:
             bool getMovingLeft();

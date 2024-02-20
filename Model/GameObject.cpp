@@ -20,21 +20,41 @@ GameObject::GameObject(std::string strName, float fSpeed, AnimatedTexture* pAnim
         this->pSprite->setTexture(*this->pAnimatedTexture->getFrame());
 }
 
-/* [TODO][2] */
 void GameObject::processEvents(sf::Event CEvent){
-    // switch(CEvent.type){
-    //     case sf::Event::KeyPressed :
-    //         this->processKeyboardInput(CEvent.key.code, true);
-    //         break;
 
-    //     case sf::Event::KeyReleased :
-    //         this->processKeyboardInput(CEvent.key.code, false);
-    //         break;
-    // }
+    std::vector<Component*> vecInputs = this->getComponents(ComponentType::INPUT);
+
+    for(Component* pComponent : vecInputs){
+        GeneralInput* pGeneralInput = (GeneralInput*)pComponent;
+
+        pGeneralInput->assignEvent(CEvent);
+        pGeneralInput->perform();
+    }
+
+};
+
+void GameObject::update(sf::Time tDeltaTime){
+
+    std::vector<Component*> vecScripts = this->getComponents(ComponentType::SCRIPT);
+
+    for(Component* pComponent : vecScripts){
+        pComponent->setDeltaTime(tDeltaTime);
+        pComponent->perform();
+    }
+
 };
 
 void GameObject::draw(sf::RenderWindow* pWindow){
-    pWindow->draw(*this->pSprite);
+    // pWindow->draw(*this->pSprite);
+
+    std::vector<Component*> vecRenderers = this->getComponents(ComponentType::RENDERER);
+
+    for(Component* pComponent : vecRenderers){
+        Renderer* pRenderer = (Renderer*)pComponent;
+
+        pRenderer->assignTargetWindow(pWindow);
+        pRenderer->perform();
+    }
 };
 
 void GameObject::attachComponent(Component* pComponent){
@@ -70,7 +90,7 @@ Component* GameObject::findComponentByName(std::string strName){
 };
 
 std::vector<Component*> GameObject::getComponents(ComponentType EType){
-    std::vector<Component*> vecOutput;
+    std::vector<Component*> vecOutput = {};
 
     int nComponentCount = this->vecComponents.size();
     for(int i = 0; i < nComponentCount; i++){

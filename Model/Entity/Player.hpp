@@ -3,24 +3,20 @@
 #include "../GameObject.hpp"
 #include "../AnimatedTexture.hpp"
 
+#include "../Component/PlayerInput.hpp"
+#include "../Component/PlayerMovement.hpp"
+#include "../Component/Renderer/Renderer.hpp"
+
 namespace entities {
     using namespace models;
 
     class Player : public GameObject {
-        private:
-            // bool bMovingLeft;
-            // bool bMovingRight;
-            // bool bMovingUp;
-            // bool bMovingDown;
-
         public:
-            // Player(std::string strName);
             Player(std::string strName, AnimatedTexture* pAnimatedTexture);
-
-        /* [TODO][1] */
+        
         public:
             void initialize();
-            void update(sf::Time tDeltaTime);
+            // void update(sf::Time tDeltaTime);
 
         // protected:
         //     void processKeyboardInput(sf::Keyboard::Key CKey, bool isPressed);

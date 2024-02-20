@@ -11,7 +11,6 @@ void GameObjectManager::processEvents(sf::Event CEvent) {
 }
 
 void GameObjectManager::update(sf::Time tDeltaTime) {
-    /* [TODO][4] */
     for(GameObject* pGameObject : this->vecGameObject){
         if(pGameObject->getEnabled())
             pGameObject->update(tDeltaTime);
@@ -20,7 +19,6 @@ void GameObjectManager::update(sf::Time tDeltaTime) {
 }
 
 void GameObjectManager::draw(sf::RenderWindow* pWindow) {
-    /* [TODO][5] */
     for(GameObject* pGameObject : this->vecGameObject){
         if(pGameObject->getEnabled())
             pGameObject->draw(pWindow);

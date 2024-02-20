@@ -1,37 +1,41 @@
 #include "Player.hpp"
 
 using namespace entities;
+using namespace components;
 
 // Player::Player(std::string strName) : GameObject(strName, 300.0f) {
 //     this->bMovingLeft = false;
 //     this->bMovingRight = false;
 // }
 
-Player::Player(std::string strName, AnimatedTexture* pAnimatedTexture) : GameObject(strName, 300.0f, pAnimatedTexture) {
-    // this->bMovingLeft = false;
-    // this->bMovingRight = false;
-}
+Player::Player(std::string strName, AnimatedTexture* pAnimatedTexture) 
+    : GameObject(strName, 300.0f, pAnimatedTexture) {}
 
-/* [TODO][2] */
 void Player::initialize(){
     this->pSprite->setPosition(100.f, 100.f);
+
+    this->attachComponent(new PlayerInput(this->strName + "Input"));
+    this->attachComponent(new PlayerMovement(this->strName + "Movement"));
+    this->attachComponent(new Renderer(this->strName + "Renderer"));
+
+    ((Renderer*)this->findComponentByName(this->strName + "Renderer"))->assignDrawable(this->pSprite);
 };
 
-void Player::update(sf::Time tDeltaTime){
-    if(true){
-        this->pSprite->move(-1.f * this->fSpeed * tDeltaTime.asSeconds(), 0.f);
+// void Player::update(sf::Time tDeltaTime){
+//     if(true){
+//         this->pSprite->move(-1.f * this->fSpeed * tDeltaTime.asSeconds(), 0.f);
 
-        this->pAnimatedTexture->setCurrentFrame(0);
-        this->getSprite()->setTexture(*this->pAnimatedTexture->getFrame());
-    }
+//         this->pAnimatedTexture->setCurrentFrame(0);
+//         this->getSprite()->setTexture(*this->pAnimatedTexture->getFrame());
+//     }
 
-    if(true){
-        this->pSprite->move(1.f * this->fSpeed * tDeltaTime.asSeconds(), 0.f);
+//     if(true){
+//         this->pSprite->move(1.f * this->fSpeed * tDeltaTime.asSeconds(), 0.f);
 
-        this->pAnimatedTexture->setCurrentFrame(1);
-        this->getSprite()->setTexture(*this->pAnimatedTexture->getFrame());
-    }
-};
+//         this->pAnimatedTexture->setCurrentFrame(1);
+//         this->getSprite()->setTexture(*this->pAnimatedTexture->getFrame());
+//     }
+// };
 
 // void Player::processKeyboardInput(sf::Keyboard::Key CKey, bool isPressed){
 //     switch (CKey) {
