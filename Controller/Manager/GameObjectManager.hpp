@@ -1,5 +1,6 @@
 #pragma once
 
+#include <unordered_map>
 #include "../../Model/Enum/AssetType.hpp"
 #include "../../Model/GameObject.hpp"
 
@@ -8,8 +9,8 @@ namespace managers {
 
     class GameObjectManager {
         private:
-            std::unordered_map<std::string, GameObject*> mapGameObject;
-            std::vector<GameObject*> vecGameObject;
+            std::unordered_map<std::string, GameObject*> mapGameObjects;
+            std::vector<GameObject*> vecGameObjects;
         
         public:
             void processEvents(sf::Event CEvent);
@@ -18,6 +19,7 @@ namespace managers {
 
             void addObject(GameObject* pGameObject);
             GameObject* findObjectByName(std::string strName);
+            void deleteAllObjects();
 
         /* * * * * * * * * * * * * * * * * * * * * 
          *       SINGLETON-RELATED CONTENT       * 

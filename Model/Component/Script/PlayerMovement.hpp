@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Enum/ComponentType.hpp"
-#include "Component.hpp"
-#include "PlayerInput.hpp"
+#include "../../Enum/ComponentType.hpp"
+#include "../Component.hpp"
+#include "../Input/PlayerInput.hpp"
 
 namespace components {
     class PlayerMovement : public Component {

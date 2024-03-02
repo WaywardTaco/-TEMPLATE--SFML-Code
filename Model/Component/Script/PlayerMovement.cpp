@@ -3,14 +3,14 @@
 
 using namespace components;
 
-PlayerMovement::PlayerMovement(std::string strName) : Component(strName, ComponentType::SCRIPT),
+PlayerMovement::PlayerMovement(std::string strName) 
+    : Component(strName, ComponentType::SCRIPT),
     fSpeed(300.f)
 {
 
 };
 
 void PlayerMovement::perform(){
-    
     PlayerInput* pPlayerInput = (PlayerInput*) this->getOwner()->findComponentByName(this->getOwner()->getName() + "Input");
     sf::Sprite* pSprite = this->getOwner()->getSprite();
 
@@ -29,7 +29,5 @@ void PlayerMovement::perform(){
         pSprite->move(0.f, -1.f * this->fSpeed * this->tDeltaTime.asSeconds());
     
     if(pPlayerInput->getMovingDown())
-        pSprite->move(0.f, 1.f * this->fSpeed * this->tDeltaTime.asSeconds());
-
-    
+        pSprite->move(0.f, 1.f * this->fSpeed * this->tDeltaTime.asSeconds());  
 };

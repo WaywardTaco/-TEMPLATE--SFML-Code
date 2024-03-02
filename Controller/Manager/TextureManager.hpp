@@ -3,6 +3,8 @@
 #define TEXTURE_MANAGER_H
 
 #include "../../Model/Enum/AssetType.hpp"
+#include <SFML/Graphics.hpp>
+#include <unordered_map>
 
 namespace managers {
     class TextureManager {
@@ -11,6 +13,9 @@ namespace managers {
 
         public:
             void loadAll();
+            void loadMainMenu();
+            void loadGame();
+            void clearAll();
 
         public:
             std::vector<sf::Texture*> getTexture(AssetType EKey);

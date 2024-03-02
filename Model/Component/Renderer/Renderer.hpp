@@ -3,8 +3,9 @@
 
 #include "../../Enum/ComponentType.hpp"
 #include "../Component.hpp"
+#include <SFML/Graphics.hpp>
 
-namespace renderers {
+namespace components {
     class Renderer : public Component {
         private:
             sf::RenderWindow* pWindow;
@@ -19,7 +20,6 @@ namespace renderers {
         public:
             void assignTargetWindow(sf::RenderWindow* pWindow);
             void assignDrawable(sf::Drawable* pDrawable);
-
-
+            void flip();
     };
 }

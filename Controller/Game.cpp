@@ -2,21 +2,19 @@
 #include "Game.hpp"
 
 using namespace controllers;
-
-// Constructors 
+ 
 Game::Game() : 
-   CWindow(sf::VideoMode(1800, 900), "Josiah Kurt B. Aviso"),
+   CWindow(sf::VideoMode(800, 440), "Josiah Kurt B. Aviso"),
    bCloseWindow(false)
 {
-   TextureManager::getInstance()->loadAll();
-   AnimatedTexture* playerTextures = new AnimatedTexture(AssetType::PLAYER, TextureManager::getInstance()->getTexture(AssetType::PLAYER));
+   SceneManager::getInstance()->registerScene(new MainMenuScene());
+   SceneManager::getInstance()->registerScene(new GameScene());
+   // SceneManager::getInstance()->registerScene(new ResultScene());
 
-   Player* pEntity = new Player("Player", playerTextures);
-   GameObjectManager::getInstance()->addObject(pEntity);
+   SceneManager::getInstance()->loadScene(SceneTag::MAIN_MENU_SCENE);
 };
 
-// Methods
-void Game::run(){
+void Game::run(){  
    sf::Clock CClock;
    sf::Time 
       tTimePerFrame = sf::seconds(1.f / 60.f),
@@ -35,6 +33,7 @@ void Game::run(){
          this->update(tTimePerFrame);
       }
 
+      SceneManager::getInstance()->checkLoadScene();
       this->render();
    }
 };

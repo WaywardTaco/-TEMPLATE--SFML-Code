@@ -8,7 +8,6 @@
 
 namespace models {
     using namespace components;
-    using namespace renderers;
     class GameObject {
         protected:
             bool bEnabled;
@@ -16,12 +15,9 @@ namespace models {
             sf::Sprite* pSprite;
             AnimatedTexture* pAnimatedTexture;
             std::vector<Component*> vecComponents;
-            sf::Texture* pTexture;
-            float fSpeed;
 
         public:
-            // GameObject(std::string strName, float fSpeed);
-            GameObject(std::string strName, float fSpeed, AnimatedTexture* pAnimatedTexture);
+            GameObject(std::string strName, AnimatedTexture* pAnimatedTexture);
         
         public:
             virtual void initialize() = 0;
@@ -29,8 +25,6 @@ namespace models {
             virtual void update(sf::Time tDeltaTime);
             virtual void draw(sf::RenderWindow* pWindow);
 
-        // protected:
-        //     virtual void processKeyboardInput(sf::Keyboard::Key CKey, bool isPressed) = 0;
         public:
             void attachComponent(Component* pComponent);
             void detachComponent(Component* pComponent);
@@ -42,7 +36,5 @@ namespace models {
             std::string getName();
             sf::Sprite* getSprite();
             void setFrame(int nFrame);
-            void setTexture(sf::Texture* pTexture);
-            float getSpeed();
     };
 }

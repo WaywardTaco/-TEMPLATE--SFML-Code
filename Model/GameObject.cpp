@@ -2,17 +2,9 @@
 
 using namespace models;
 
-// GameObject::GameObject(std::string strName, float fSpeed) {
-//     this->bEnabled = true;
-//     this->strName = strName;
-//     this->fSpeed = fSpeed;
-//     this->pSprite = new sf::Sprite();
-// }
-
-GameObject::GameObject(std::string strName, float fSpeed, AnimatedTexture* pAnimatedTexture) {
+GameObject::GameObject(std::string strName, AnimatedTexture* pAnimatedTexture) {
     this->bEnabled = true;
     this->strName = strName;
-    this->fSpeed = fSpeed;
     this->pAnimatedTexture = pAnimatedTexture;
     this->pSprite = new sf::Sprite();
 
@@ -21,7 +13,6 @@ GameObject::GameObject(std::string strName, float fSpeed, AnimatedTexture* pAnim
 }
 
 void GameObject::processEvents(sf::Event CEvent){
-
     std::vector<Component*> vecInputs = this->getComponents(ComponentType::INPUT);
 
     for(Component* pComponent : vecInputs){
@@ -30,23 +21,18 @@ void GameObject::processEvents(sf::Event CEvent){
         pGeneralInput->assignEvent(CEvent);
         pGeneralInput->perform();
     }
-
 };
 
 void GameObject::update(sf::Time tDeltaTime){
-
     std::vector<Component*> vecScripts = this->getComponents(ComponentType::SCRIPT);
 
     for(Component* pComponent : vecScripts){
         pComponent->setDeltaTime(tDeltaTime);
         pComponent->perform();
     }
-
 };
 
 void GameObject::draw(sf::RenderWindow* pWindow){
-    // pWindow->draw(*this->pSprite);
-
     std::vector<Component*> vecRenderers = this->getComponents(ComponentType::RENDERER);
 
     for(Component* pComponent : vecRenderers){
@@ -120,12 +106,3 @@ void GameObject::setFrame(int nFrame){
         this->pSprite->setTexture(*this->pAnimatedTexture->getFrame());
     };
 };
-
-void GameObject::setTexture(sf::Texture* pTexture) {
-    this->pTexture = pTexture;
-    this->pSprite->setTexture(*this->pTexture);
-}
-
-float GameObject::getSpeed() {
-    return this->fSpeed;
-}

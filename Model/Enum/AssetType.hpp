@@ -1,9 +1,8 @@
-
-#ifndef ASSET_TYPES_H
-#define ASSET_TYPES_H
+#pragma once
 
 enum class AssetType : int {
-    PLAYER, SCREEN, CREDITS
+    NONE = -1,
+    PLAYER,
+    MAIN_MENU_BACKGROUND,
+    GAME_BACKGROUND
 };
-
-#endif

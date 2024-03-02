@@ -3,22 +3,22 @@
 #define ANIMATED_TEXTURE_H
 
 #include "Enum/AssetType.hpp"
+#include <vector>
+#include <SFML/Graphics.hpp>
 
 namespace models {
     class AnimatedTexture {
         private:
-            AssetType EType;
             std::vector<sf::Texture*> vecFrames;
             int nCurrentFrame;
 
         public:
-            AnimatedTexture(AssetType EType, std::vector<sf::Texture*> vecFrames);
+            AnimatedTexture(std::vector<sf::Texture*> vecFrames);
 
         public:
             void incrementFrame();
             sf::Texture* getFrame();
             void setCurrentFrame(int nCurrentFrame);  
-
     };
 }
 

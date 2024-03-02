@@ -3,9 +3,9 @@
 
 using namespace models;
 
-AnimatedTexture::AnimatedTexture(AssetType EType, std::vector<sf::Texture*> vecFrames) 
-    : nCurrentFrame(0) {
-    this->EType = EType;
+AnimatedTexture::AnimatedTexture(std::vector<sf::Texture*> vecFrames) 
+    : nCurrentFrame(0)
+{
     this->vecFrames = vecFrames;
 };
 
@@ -18,7 +18,6 @@ sf::Texture* AnimatedTexture::getFrame(){
 };
 
 void AnimatedTexture::setCurrentFrame(int nCurrentFrame){
-
     if(nCurrentFrame < 0)
         this->nCurrentFrame = 0;
     else if (this->nCurrentFrame >= vecFrames.size())

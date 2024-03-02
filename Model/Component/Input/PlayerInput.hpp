@@ -1,15 +1,15 @@
 #pragma once
 
-#include "GeneralInput.hpp"
+#include "../GeneralInput.hpp"
 
 namespace components {
     class PlayerInput : public GeneralInput {
         private:
-            bool bMovingLeft;
-            bool bMovingRight;
-            bool bMovingUp;
-            bool bMovingDown;
-
+            bool 
+                bMovingLeft,
+                bMovingRight,
+                bMovingUp,
+                bMovingDown;
 
         public:
             PlayerInput(std::string strName);

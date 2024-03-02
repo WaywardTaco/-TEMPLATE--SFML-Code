@@ -8,21 +8,23 @@
 #include "../Model/Enum/AssetType.hpp"
 #include "Manager/TextureManager.hpp"
 #include "Manager/GameObjectManager.hpp"
+#include "Manager/SceneManager.hpp"
+#include "../Model/Enum/SceneTag.hpp"
+#include "../Model/Scene/MainMenuScene.hpp"
+#include "../Model/Scene/GameScene.hpp"
 
 namespace controllers {
     using namespace entities;
     using namespace managers;
+    using namespace scenes;
     class Game {
-        // Fields
         private:
             sf::RenderWindow CWindow;
             bool bCloseWindow;
 
-        // Controllers
         public:
             Game();
 
-        // Methods
         public:
             void run();
 
