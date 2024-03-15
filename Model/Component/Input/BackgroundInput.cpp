@@ -4,7 +4,7 @@
 using namespace components;
 
 BackgroundInput::BackgroundInput(std::string strName) 
-    : GeneralInput(strName), bSpacePressed(false)
+    : GeneralInput(strName), bSpacePressed(false), bQPressed(false)
 {
 
 }
@@ -24,9 +24,17 @@ void BackgroundInput::processKeyboardInput(sf::Keyboard::Key inKey, bool isPress
     switch(inKey){
         case sf::Keyboard::Space:
             this->bSpacePressed = isPressed;
+            break;
+        case sf::Keyboard::Q:
+            this->bQPressed = isPressed;
+            break;
     }
 }
 
 bool BackgroundInput::getInteract(){
     return this->bSpacePressed;
 };
+
+bool BackgroundInput::getBack(){
+    return this->bQPressed;
+}

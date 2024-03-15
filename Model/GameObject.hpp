@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 #include "AnimatedTexture.hpp"
 #include "Enum/ComponentType.hpp"
 #include "Component/Component.hpp"
@@ -13,11 +15,11 @@ namespace models {
             bool bEnabled;
             std::string strName;
             sf::Sprite* pSprite;
-            AnimatedTexture* pAnimatedTexture;
+            AnimatedTexture* pTexture;
             std::vector<Component*> vecComponents;
 
         public:
-            GameObject(std::string strName, AnimatedTexture* pAnimatedTexture);
+            GameObject(std::string strName, AnimatedTexture* pTexture);
         
         public:
             virtual void initialize() = 0;
@@ -30,9 +32,11 @@ namespace models {
             void detachComponent(Component* pComponent);
             Component* findComponentByName(std::string strName);
             std::vector<Component*> getComponents(ComponentType EType);
+            void centerOrigin();
 
         public:
             bool getEnabled();
+            void setEnabled(bool bEnabled);
             std::string getName();
             sf::Sprite* getSprite();
             void setFrame(int nFrame);

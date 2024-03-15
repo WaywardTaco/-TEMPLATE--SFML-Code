@@ -2,14 +2,14 @@
 
 using namespace models;
 
-GameObject::GameObject(std::string strName, AnimatedTexture* pAnimatedTexture) {
+GameObject::GameObject(std::string strName, AnimatedTexture* pTexture) {
     this->bEnabled = true;
     this->strName = strName;
-    this->pAnimatedTexture = pAnimatedTexture;
+    this->pTexture = pTexture;
     this->pSprite = new sf::Sprite();
 
-    if(this->pAnimatedTexture != NULL)
-        this->pSprite->setTexture(*this->pAnimatedTexture->getFrame());
+    if(this->pTexture != NULL)
+        this->pSprite->setTexture(*this->pTexture->getFrame());
 }
 
 void GameObject::processEvents(sf::Event CEvent){
@@ -87,6 +87,18 @@ std::vector<Component*> GameObject::getComponents(ComponentType EType){
     return vecOutput;
 };
 
+void GameObject::centerOrigin(){
+    if(this->pTexture != NULL){
+        int nWidth = this->pSprite->getTexture()->getSize().x;
+        int nHeight = this->pSprite->getTexture()->getSize().y;
+
+        this->pSprite->setOrigin(nWidth / 2, nHeight / 2);
+    }
+}
+
+void GameObject::setEnabled(bool bEnabled){
+    this->bEnabled = bEnabled;
+}
 
 bool GameObject::getEnabled() {
     return this->bEnabled;
@@ -101,8 +113,8 @@ sf::Sprite* GameObject::getSprite() {
 }
 
 void GameObject::setFrame(int nFrame){
-    if(this->pAnimatedTexture != NULL){
-        this->pAnimatedTexture->setCurrentFrame(nFrame);
-        this->pSprite->setTexture(*this->pAnimatedTexture->getFrame());
+    if(this->pTexture != NULL){
+        this->pTexture->setCurrentFrame(nFrame);
+        this->pSprite->setTexture(*this->pTexture->getFrame());
     };
 };

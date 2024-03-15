@@ -37,13 +37,21 @@ void TextureManager::loadGame(){
     pTexture = new sf::Texture;
     pTexture->loadFromFile("View/Image/Space Impact/Player/this_ship_be_otp.png");
     this->mapTexture[AssetType::PLAYER].push_back(pTexture);
+    
+    pTexture = new sf::Texture;
+    pTexture->loadFromFile("View/Image/Space Impact/Player/bullet.png");
+    this->mapTexture[AssetType::PLAYER_BULLET].push_back(pTexture);
 };
 
 void TextureManager::clearAll(){
-    // for(sf::Texture* pTexture : this->mapTexture)
-    //     delete pTexture;
+    for(auto itr = this->mapTexture.begin(); itr != this->mapTexture.end(); itr++){
+        for(sf::Texture* pTexture : itr->second)
+            delete pTexture;
 
-    // this->mapTexture.clear();
+        itr->second.clear();
+    }
+
+    this->mapTexture.clear();
 }
 
 std::vector<sf::Texture*> TextureManager::getTexture(AssetType EKey){

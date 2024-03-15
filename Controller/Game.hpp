@@ -4,7 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Model/AnimatedTexture.hpp"
-#include "../Model/Entity/Player.hpp"
+#include "../Model/Entity/Ship.hpp"
 #include "../Model/Enum/AssetType.hpp"
 #include "Manager/TextureManager.hpp"
 #include "Manager/GameObjectManager.hpp"

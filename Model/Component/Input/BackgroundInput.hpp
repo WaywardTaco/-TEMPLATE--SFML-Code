@@ -5,7 +5,9 @@
 namespace components {
     class BackgroundInput : public GeneralInput {
         private:
-            bool bSpacePressed;
+            bool 
+                bSpacePressed,
+                bQPressed;
 
         public:
             BackgroundInput(std::string strName);
@@ -18,5 +20,6 @@ namespace components {
 
         public:
             bool getInteract();
+            bool getBack();
     };
 }

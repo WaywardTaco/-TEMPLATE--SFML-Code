@@ -15,6 +15,8 @@ void GameScene::onLoadResources(){
 
 void GameScene::onLoadObjects(){
     this->createBackground();
+    this->createShip();
+    this->createObjectPools();
 };
 
 void GameScene::onUnloadResources(){
@@ -24,9 +26,22 @@ void GameScene::onUnloadResources(){
 void GameScene::createBackground(){
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::GAME_BACKGROUND));
     Background* pBackground = new Background("Background", pTexture);
-    this->registerObject(pBackground);
+    this->registerObject(pBackground);   
+}
 
-    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
-    Player* pPlayer = new Player("Player", pTexture);
+void GameScene::createShip(){
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
+    Ship* pPlayer = new Ship("Ship", pTexture);
     this->registerObject(pPlayer);
-};
+}
+
+void GameScene::createObjectPools(){
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER_BULLET));
+    PlayerBullet* pBullet = new PlayerBullet("PlayerBullet", pTexture, (Ship*) GameObjectManager::getInstance()->findObjectByName("Ship"));
+    
+    GameObjectPool* pBulletPool = new GameObjectPool(PoolTag::PLAYER_BULLET, 3, pBullet);
+    pBulletPool->initialize();
+
+    ObjectPoolManager::getInstance()->registerObjectPool(pBulletPool);
+
+}
